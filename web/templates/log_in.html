@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Inicio de sesión{% endblock %}
+
+{% block main_content %}
+    <div class="container my-4">
+        <div class="logo">
+            <h3 class="text-center py-3">
+                Inicio de sesión
+            </h3>
+            <div class="px-4">
+                <form action="{% url 'log_in' %}" method="post">
+                    {% csrf_token %}
+                    {{ form.non_field_errors }}                    
+
+                    <div class="fieldWrapper">
+                        {{ form.username.errors }}
+                        <label for="{{ form.username.id_for_label }}" class="form-label">
+                            {{ form.username.label_tag }}
+                        </label>
+                        {{ form.username }}
+                    </div>
+                    <div class="fieldWrapper">
+                        {{ form.password.errors }}
+                        <label for="{{ form.password.id_for_label }}" class="form-label">
+                            {{ form.password.label_tag }}
+                        </label>
+                        {{ form.password }}
+                    </div>
+                    {% if error %}
+                    <p>{{ error }}</p>
+                    {% endif %}
+                    <button type="submit">Iniciar Sesión</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

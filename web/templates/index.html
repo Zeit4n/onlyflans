@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% load custom_filters %}
+
+{% load static %}
+
+{% block title %}Index{% endblock %}
+
+{% block main_content %}
+    <div class="my-3">
+        <h1 class="mx-2">Indice</h1>
+        <div class="container-fluid row justify-content-center">
+        {% for f in flanes %}
+        <div class="card m-4 border-light" style="width: 18rem;">
+            <img src="{{f.image_url}}" class="card-img-top h-50">
+            <div class="card-body">
+                <h5 class="card-title">{{f.name}}</h5>
+                <p class="card-text small">{{f.description}}</p>
+                <div class="row justify-content-center">
+                    <p class="fw-bold col-5">Valoración:</p>
+                    {% for i in f.rate|to %}
+                        <i class="fa-solid fa-star col-1 pt-1 px-1" style="color: #FFD43B;"></i>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+
+
