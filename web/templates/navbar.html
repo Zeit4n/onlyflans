@@ -1,13 +1,16 @@
 {% load static %}
 
 <nav class="navbar navbar-expand-lg navbar-light nvb">
-    <div class="row container-fluid">
-      <div class="col-6">
-        <a class="navbar-brand" href="#"><img src="../static/img/onlyflans.png" id="logo-nvb"></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      </div>
+    <div class="container-fluid">
+      <div class="col-10 col-lg-6"> 
+      <a class="navbar-brand" href="#">
+        <img src="../static/img/onlyflans.png" id="logo-nvb">
+      </a>
+      </div>   
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" 
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+      </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
@@ -16,22 +19,29 @@
           <li class="nav-item">
             <a class="nav-link active" href="{% url 'about' %}">¿Quienes somos?</a>
           </li>
-          <li class="nav-item"></li>
+          <li class="nav-item">
             <a class="nav-link active" href="{% url 'contact' %}">Contacto</a>
           </li>
           {% if user.is_authenticated %}
           <li class="nav-item">
             <a class="nav-link active" href="{% url 'welcome' %}">Bienvenido</a>
           </li>
-          <li class="nav-item"></li>
+          <li class="nav-item">
             <a class="nav-link active" href="{% url 'log_out' %}">Cerrar sesión</a>
           </li>
           {% else %}
-          <li class="nav-item"></li>
+          <li class="nav-item">
             <a class="nav-link active" href="{% url 'log_in' %}">Iniciar sesión</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="{% url 'register' %}">Regístrate</a>
           </li>
           {% endif %}
         </ul>
       </div>
     </div>
 </nav>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

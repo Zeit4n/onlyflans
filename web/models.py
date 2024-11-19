@@ -26,4 +26,13 @@ class ContactForm(models.Model):
         db_table = 'ContactForm'
         verbose_name = "Formulario de contacto"
         verbose_name_plural = "Formulario de contactos"
-        
+
+"""
+class Usuario(AbstractUser):
+    confirm_password = models.CharField(max_length=100,null=True,blank=True)
+
+    class Meta:
+        verbose_name = 'Usuario'
+        verbose_name_plural = 'Usuarios'
+"""
+    

@@ -1,0 +1,52 @@
+html, body {
+    height: 100%;  /* Hace que ambos ocupen toda la altura disponible */
+    margin: 0;     /* Elimina márgenes predeterminados */
+    padding: 0;    /* Elimina rellenos predeterminados */
+    box-sizing: border-box;  /* Asegura que el padding no afecta el tamaño total */
+}
+body {
+    background-image: url('../img/flan_wallpaper.png');
+    /*background-repeat: no-repeat;*/
+    background-size: cover;
+}
+
+footer {
+    margin-bottom: 0;
+    padding-bottom: 1%;
+}
+.nvb{
+    background-color: darkorange;
+}
+
+#logo-nvb{
+    height: 50px;
+    width: 200px;
+}
+
+.transparente{
+    background-color: rgb(255,255,255,0.5)  
+}
+
+.logo {
+    background-color: gold;
+}
+
+.redondeado{
+    border-radius: 10px;
+}
+
+/* Cambia el color del texto al pasar el mouse sobre un enlace */
+.navbar-nav .nav-item .nav-link:hover {
+    color: #fff; /* Azul, o el color que desees */
+    /*background-color: orange; /* Puedes cambiar el fondo si lo prefieres */
+}
+
+.card-flan:hover {
+    transform: scale(1.1);
+}
+/* Si quieres que el color del fondo cambie al pasar el mouse */
+
+/*.navbar-nav .nav-item .nav-link:hover {
+    background-color: #f0f0f0;  
+}*/
+

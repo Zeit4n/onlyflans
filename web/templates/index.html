@@ -8,10 +8,15 @@
 
 {% block main_content %}
     <div class="my-3">
-        <h1 class="mx-2">Indice</h1>
+        <div class="container card transparente">
+            <p>
+                Aquí puedes ver los flanes "públicos" de los que disponemos. Para ver nuestros flanes exclusivos regístrate e inicia sesión.<br>
+            </p>
+        </div>
+
         <div class="container-fluid row justify-content-center">
         {% for f in flanes %}
-        <div class="card m-4 border-light" style="width: 18rem;">
+        <div class="card m-4 border-light h-50 card-flan" style="width: 18rem;">
             <img src="{{f.image_url}}" class="card-img-top h-50">
             <div class="card-body">
                 <h5 class="card-title">{{f.name}}</h5>

@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from .models import Flan, ContactForm
-from .forms import ContactFormForm, UserLoginForm
+from .forms import ContactFormForm, UserLoginForm, UserRegisterForm
 from django.http import HttpResponseRedirect
 
 # Create your views here.
@@ -11,6 +12,24 @@ def index(request):
         'flanes':Flan.objects.all().filter(is_private = False),
     }    
     return render(request,'index.html',context)
+
+def register(request):
+    if request.method == 'GET':
+        context = {
+            'form':UserRegisterForm,
+            'title':'Registro'
+        }
+        return render(request,'register.html',context)
+    elif request.method == 'POST':
+        form = UserRegisterForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            user.set_password(request.POST['password'])
+            user.save()
+            return redirect('log_in')
+        else:
+            return render(request,'register.html',{'form':form,'title':'Registro'})
+    
 def log_in(request):
     if request.method == 'GET':
         context = {
@@ -54,7 +73,7 @@ def contact(request):
         if form.is_valid():
             contact_form = ContactForm.objects.create(**form.cleaned_data)
             contact_form.save()
-            return HttpResponseRedirect('exito')
+            return redirect('index')
     
     else:
         form = ContactFormForm()
