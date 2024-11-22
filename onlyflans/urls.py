@@ -21,10 +21,12 @@ from web import views as web_views
 urlpatterns = [
     path('', web_views.index, name='index'),
     path('acerca/', web_views.about, name='about'),
+    path('register/', web_views.register, name='register'),
     path('login/', web_views.log_in, name='log_in'),
     path('logout/',web_views.log_out,name='log_out'),
     path('bienvenido/', web_views.welcome, name='welcome'),
     path('contacto/', web_views.contact, name='contact'),
     path('contacto/exito', web_views.success, name='success'),
     path('admin/', admin.site.urls),
+    
 ]

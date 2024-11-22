@@ -5,13 +5,26 @@ from django.contrib.auth.decorators import login_required
 from .models import Flan, ContactForm
 from .forms import ContactFormForm, UserLoginForm, UserRegisterForm
 from django.http import HttpResponseRedirect
-
+import json
 # Create your views here.
 def index(request):
-    context ={
-        'flanes':Flan.objects.all().filter(is_private = False),
-    }    
-    return render(request,'index.html',context)
+    if request.method == 'GET':
+        context ={
+            'flanes':Flan.objects.all().filter(is_private = False),
+        }    
+        return render(request,'index.html',context)
+    elif request.method == 'POST':
+        data = json.loads(request.body)
+        user_rate = data.get('user_rate')
+        flan_id = data.get('flan_id')
+        flan_edit = Flan.objects.get(flan_uuid=flan_id)
+        flan_edit.rate = user_rate
+        flan_edit.save()
+        context = {
+            'user' : request.user,
+            'flanes' : Flan.objects.all().filter(is_private = False),
+            }
+        return render(request,'welcome.html',context)
 
 def register(request):
     if request.method == 'GET':
@@ -61,11 +74,24 @@ def about(request):
 
 @login_required
 def welcome(request):
-    context = {
-        'user' : request.user,
-        'flanes' : Flan.objects.all().filter(is_private = True),
-        }
-    return render(request,'welcome.html',context)
+    if request.method == 'GET':
+        context = {
+            'user' : request.user,
+            'flanes' : Flan.objects.all().filter(is_private = True),
+            }
+        return render(request,'welcome.html',context)
+    elif request.method == 'POST':
+        data = json.loads(request.body)
+        user_rate = data.get('user_rate')
+        flan_id = data.get('flan_id')
+        flan_edit = Flan.objects.get(flan_uuid=flan_id)
+        flan_edit.rate = user_rate
+        flan_edit.save()
+        context = {
+            'user' : request.user,
+            'flanes' : Flan.objects.all().filter(is_private = True),
+            }
+        return render(request,'welcome.html',context)
 
 def contact(request):
     if request.method == 'POST':
